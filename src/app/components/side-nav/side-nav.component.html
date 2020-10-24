@@ -1,0 +1,22 @@
+<section class="d-flex-column justify-context-center align-items-start">
+  
+  <!-- User profile section -->
+  <div class="user-profile mb-30 d-flex-column justify-context-center align-items-center">
+    <div class="user-avatar mb-8">
+      <img [src]="userInfo?.profilePicture" alt="User-avatar">
+    </div>
+    <div class="user-name d-flex-row justify-context-start align-items-center">
+      <span class="mb-8 mr-12" [innerHtml]="userInfo?.name"></span>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+    <span class="mb-8 email" [innerHtml]="userInfo?.email"></span>
+  </div>
+
+  <!-- List of menu items -->
+  <div class="menu-items d-flex-column justify-context-start align-items-center">
+    <div class="d-flex-row menu-item justify-context-start align-items-center" [class.active]="item?.isActive" *ngFor="let item of menuItems">
+      <mat-icon *ngIf="item?.icon" class="mr-8">{{item?.icon}}</mat-icon>
+      <span [innerHtml]="item?.name"></span>
+    </div>
+  </div>
+</section>

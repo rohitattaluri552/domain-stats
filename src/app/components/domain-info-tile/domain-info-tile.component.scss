@@ -1,0 +1,66 @@
+
+
+.domain-details {
+    margin-bottom: 15px;
+
+    .main-domain {
+        padding: .85em 1.4em;
+        background: white;
+        border-radius: 4px;
+        .domain-name {
+            color: var(--app-neutral-dark-blue);
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    // Storage/ Month-Visitors progress bar
+    .storage-section, .monthly-visitors {
+        .storage-bar {
+            width: 80%;
+            border-radius: 4px;
+            height: 18px;
+            background: var(--app-neutral-light-cream);
+        }
+        .storage-used {
+            background: var(--app-primary-green);
+            height: 18px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        // If the used Storage is equal to the provided storage
+        .border-radius-adjustments {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .value {
+            font-size: 13px;
+            color: var(--app-neutral-light-gray);
+        }
+    }
+
+    //Total domains count showing in circular progress bar
+    .total-domains-section {
+        .circular-progress-bar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 13px;
+            color: var(--app-primary-blue);
+            font-weight: 600;
+            border: 3px solid var(--app-primary-blue);
+        }
+    }
+
+    .status-section {}
+    .sub-domains {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+}
+
+.remove-border-bottom-radius {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
