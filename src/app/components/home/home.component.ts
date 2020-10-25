@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DomainInfo, DomainsManagemenetService } from 'src/app/services/domains-managemenet.service';
 import { startWith, map } from 'rxjs/operators';
-import { SubDomain } from './../../services/domains-managemenet.service';
+import { UtilService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-home',
@@ -12,30 +12,35 @@ import { SubDomain } from './../../services/domains-managemenet.service';
 })
 export class HomeComponent implements OnInit {
 
-  private domains: DomainInfo[];
+  public domains: DomainInfo[] = [];
 
-  searchDomain = new FormControl('');
+  public searchDomain = new FormControl('');
   
-  headerItems: string[] = [];
+  public headerItems: string[] = [];
 
-  filteredDomainsList$: Observable<DomainInfo[]>;
+  public filteredDomainsList$: Observable<DomainInfo[]>;
 
-  isDialogOpened: boolean = false;
+  public isDialogOpened: boolean = false;
 
-  addDomainForm: FormGroup;
+  public addDomainForm: FormGroup;
 
-  subDomains: any [];
+  public subDomains: any [];
 
   constructor(
     private domainsService: DomainsManagemenetService,
+    private utilService: UtilService,
   ) { }
 
   ngOnInit() {
     this.getDomainInfo();
-    // Delete function call
+    
+    /**
+     *  Delete function call (Use this when ever you want to delete any domain) 
+     */
     // this.domainsService.deleteADomain(6).subscribe(deletedDomain => {
     //   alert('Domain deleted successfully');
-    // })
+    // });
+
     //Buildding the form
     this.addDomainForm = new FormGroup({
       domain: new FormControl('', Validators.required),
@@ -45,7 +50,12 @@ export class HomeComponent implements OnInit {
     });
     
     //Preparing the requried header fileds to show on UI
-    this.headerItems = ['Domain & Plan Name', 'Storage', 'Monthly Visitor', 'Domains', 'Status'];
+    this.headerItems = [ 'Domain & Plan Name',
+                          'Storage',
+                          'Monthly Visitor', 
+                          'Domains', 
+                          'Status',
+                        ];
   }
   
   get domain() {
@@ -65,14 +75,19 @@ export class HomeComponent implements OnInit {
   /**
    * Getting the domains list form the get api
    */
-  private getDomainInfo(){
+  private getDomainInfo() {
     this.domainsService.getDomainsList().subscribe((domains: DomainInfo[]) => {
       this.domains = domains;
       this.onSearchDomain();
     });
   }
 
-  /// TODO:Search functionality
+  /**
+   * Search Functionality
+   * 
+   * Based on the entered keyword by the user, domains are filtering
+   * based on domain name
+   */
   public onSearchDomain(){
     this.filteredDomainsList$ = this.searchDomain.valueChanges.pipe(
       startWith(''),
@@ -85,31 +100,22 @@ export class HomeComponent implements OnInit {
   }
 
   // Add a sub domain
-  addASubDomain(input: HTMLInputElement) {
-    const subDomain = new FormControl({
-        name: input.value,
-        id: this.create_UUID(),
-        usedStorage: 0,
-        domainTag: 'Add On',
-        monthlyVisitor: Math.floor((Math.random() * 1200) + 1),
-      });
-    this.subdomain.push(subDomain);
-    input.value = '';
-  }
-
-  // generate UUID for subdomain Id
-  create_UUID(){
-    var dt = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (dt + Math.random()*16)%16 | 0;
-        dt = Math.floor(dt/16);
-        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-    });
-    return uuid;
+  public addASubDomain(input: HTMLInputElement) {
+    if(input.value) {
+      const subDomain = new FormControl({
+          name: input.value,
+          id: this.utilService.create_UUID(),
+          usedStorage: 0,
+          domainTag: this.utilService.pickRandomString(['Primary', 'Staging', 'Add On']),
+          monthlyVisitor: Math.floor((Math.random() * 1200) + 1),
+        });
+      this.subdomain.push(subDomain);
+      input.value = '';
+    }
   }
 
   // Remove the subdomian if not required 
-  removeSubdomain(index){
+  public removeSubdomain(index: number){
     this.subdomain.removeAt(index);
   }
 
@@ -117,32 +123,36 @@ export class HomeComponent implements OnInit {
    * After submiting the form, re-setting the expected properties that are in use(on UI)
    * and calling api to add the new domain details. 
    * */
-  public submitForm(){
+  public submitForm() {
     const reqObject = this.addDomainForm.value;
-    reqObject.usedStorage = 0;
-    reqObject.usedDomains = reqObject.subdomain.length ? reqObject.subdomain.length : 1;
-    reqObject.monthlyVisitorCapacity = 45500;
-    reqObject.status = 'Active';
+    reqObject.usedStorage = reqObject.storage / 10;
+    reqObject.usedDomains = reqObject.subdomain.length 
+                              ? reqObject.subdomain.length 
+                              : 1;
+
+    reqObject.monthlyVisitorCapacity = reqObject.monthlyVisitor * 10;
+    reqObject.status = this.utilService.pickRandomString(['Inactive', 'Active']);
 
     reqObject.monthlyVisitor = parseInt(reqObject.monthlyVisitor);
-    reqObject.availableDomains = reqObject.subdomain.length ? 
-                                  (reqObject.subdomain.length + 1)
+    reqObject.availableDomains = reqObject.subdomain.length  
+                                  ? (reqObject.subdomain.length + 1)
                                   : 1;
 
     this.domainsService.addNewDomainToTheList(reqObject).subscribe(newDomain => {
-      
       if(newDomain){
         this.getDomainInfo();
+        this.isDialogOpened = !this.isDialogOpened;
         window.alert('Domain information added succesfully');
-      } 
-
-      this.isDialogOpened = !this.isDialogOpened;
+      }
+    }, error=>{
+      console.log(`Error:::::${error}`);
+      window.alert('Something went wrong, Please try after some time');
     });
-
   }
 
+  
   // ON click of close button (reseting the form and closing it)
-  public resetForm(){
+  public resetForm() {
     this.addDomainForm.value.storage = '';
     this.addDomainForm.value.domain = '';
     this.addDomainForm.value.subdomain = '';

@@ -23,7 +23,6 @@ export class SubDomainTileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.status);
     switch(this.subdomain.domainTag) {
       case 'Primary' : this.subdomain.color = this.primary;
             this.subdomain.backgroundColor = this.primaryBackground;

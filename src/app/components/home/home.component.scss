@@ -70,6 +70,7 @@ section {
                 }
             }
         }
+
         .domains-table-header {
             padding: .85em 1.4em;
             background: var(--app-domain-header-bg);
@@ -86,7 +87,8 @@ section {
                 width: 20% !important;
             }
         }
-        .no-domain-found {
+
+        .no-domain-found-from-search {
             height: 200px;
             width: 80%;
             font-size: 16px;
@@ -95,6 +97,14 @@ section {
                 font-size: 20px;
                 color: var(--app-primary-red);
             }
+        }
+        .no-domains {
+            width: 100%;
+            img {
+                height: 300px;
+                width: 300px;
+            }
+            span { margin-top: 15px;color: var(--app-primary-orange);font-size: 18px;font-weight: 600; }
         }
     }
 }

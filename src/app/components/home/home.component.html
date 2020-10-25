@@ -59,11 +59,19 @@
           </ng-template>
 
           <ng-template #noDomainsMsg>
-            <div class="no-domain-found d-flex-row justify-content-center align-items-center">
-              No domains were found with "<span [innerHtml]="searchDomain.value" class="domain-name"></span>"
+            <div *ngIf="searchDomain.value.length" 
+              class="no-domain-found-from-search d-flex-row justify-content-center align-items-center">
+              No domains were found with 
+              "<span [innerHtml]="searchDomain.value" class="domain-name"></span>"
             </div>
+
           </ng-template>
         </ng-container>
+        
+        <div *ngIf="!domains.length" class="no-domains d-flex-column justify-content-center align-items-center">
+          <img src="assets/images/caveman.gif" alt="no-domains-found" loading="lazy">
+          <span>Oops, Something went wrong (-_-)</span>
+        </div>
       </div>
     </div>
 
@@ -76,7 +84,7 @@
   <div class="dialog">
     <div class="dialog-header-section d-flex-row justify-content-btw align-items-center">
       <h4>Add Domain Details</h4>
-      <mat-icon (click)="isDialogOpened = !isDialogOpened">close</mat-icon>
+      <mat-icon (click)="isDialogOpened = !isDialogOpened; resetForm()">close</mat-icon>
     </div>
     
     <div class="dialog-body d-flex-column justify-content-start align-items-start">
@@ -100,13 +108,16 @@
             <!-- On key enter, crating a new subdomain object and displaying 
                 name below the input -->
             <input type="text" placeholder="Sub domain" #subdomainInput 
-              (keyup.enter)="addASubDomain(subdomainInput)">
+              (keyup.enter)="addASubDomain(subdomainInput)" 
+              (blur)="addASubDomain(subdomainInput)">
               <!-- iterating the list of sub-domains added -->
+              
               <div class="d-flex-row new-subdomain-tile justify-content-btw" 
                 *ngFor="let subdomainItem of subdomain.value; let index = index">
                 <span>{{subdomainItem?.name}}</span>
                 <mat-icon (click)="removeSubdomain(index)">close</mat-icon>
               </div>
+
           </div>
 
           <div class="d-flex-column input-field">
