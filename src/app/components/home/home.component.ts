@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DomainInfo, DomainsManagemenetService } from 'src/app/services/domains-managemenet.service';
 import { startWith, map } from 'rxjs/operators';
+import { SubDomain } from './../../services/domains-managemenet.service';
 
 @Component({
   selector: 'app-home',
@@ -119,12 +120,14 @@ export class HomeComponent implements OnInit {
   public submitForm(){
     const reqObject = this.addDomainForm.value;
     reqObject.usedStorage = 0;
-    reqObject.usedDomains = reqObject.subdomain !== '' ? 2 : 1;
-    reqObject.monthlyVisitorCapacity = 22500;
+    reqObject.usedDomains = reqObject.subdomain.length ? reqObject.subdomain.length : 1;
+    reqObject.monthlyVisitorCapacity = 45500;
     reqObject.status = 'Active';
 
     reqObject.monthlyVisitor = parseInt(reqObject.monthlyVisitor);
-    reqObject.availableDomains = Math.floor((Math.random() * 20) + 1);
+    reqObject.availableDomains = reqObject.subdomain.length ? 
+                                  (reqObject.subdomain.length + 1)
+                                  : 1;
 
     this.domainsService.addNewDomainToTheList(reqObject).subscribe(newDomain => {
       

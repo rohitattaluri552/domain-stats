@@ -93,6 +93,60 @@
       "status": "Active",
       "availableDomains": 4,
       "id": 5
+    },
+    {
+      "domain": "amazon.com",
+      "monthlyVisitor": 4555,
+      "storage": "455",
+      "subdomain": [
+        {
+          "name": "us.amazon.com",
+          "id": "cfee3378-16e6-4051-93cf-a2239bab00bb",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 448
+        },
+        {
+          "name": "ca.amazon.com",
+          "id": "e5e25a83-2b21-41dc-8eb8-39383d8ffeb0",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 788
+        }
+      ],
+      "usedStorage": 0,
+      "usedDomains": 2,
+      "monthlyVisitorCapacity": 22500,
+      "status": "Active",
+      "availableDomains": 1,
+      "id": 7
+    },
+    {
+      "domain": "coupondunia.com",
+      "monthlyVisitor": 4445,
+      "storage": "444",
+      "subdomain": [
+        {
+          "name": "us.coupondunia.com",
+          "id": "f7b99bc9-d884-49e1-a89d-8fe06314b7ce",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 1148
+        },
+        {
+          "name": "ca.coupondunia.com",
+          "id": "7eed8f08-c8c4-4b7d-b0dd-d880dfac023d",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 435
+        }
+      ],
+      "usedStorage": 0,
+      "usedDomains": 2,
+      "monthlyVisitorCapacity": 22500,
+      "status": "Active",
+      "availableDomains": 3,
+      "id": 10
     }
   ]
 }
