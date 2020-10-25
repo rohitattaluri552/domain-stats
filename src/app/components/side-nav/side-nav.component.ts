@@ -9,7 +9,7 @@ export class SideNavComponent implements OnInit {
 
   constructor() { }
   userInfo: Object = {
-    profilePicture: 'https://lh3.googleusercontent.com/ogw/ADGmqu81J5ZHbuKG4bcgnMqBSuuWiQgA_AAefNQrvKwumA4=s83-c-mo',
+    profilePicture: 'assets/images/author-avatar.jpg',
     email: 'rohit@gmail.com',
     name: 'Rohit Attaluri',
   }

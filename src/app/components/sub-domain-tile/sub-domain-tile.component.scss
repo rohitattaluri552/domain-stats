@@ -2,7 +2,11 @@
 section {
     padding: .85em 1.4em;
     background: var(--app-neutral-light-cream);
-    
+    justify-content: start;
+    align-items: start;
+    pre {
+        margin: 0;
+    }
     .subdomain-name {
         color: var(--app-neurtral-dark-blue);
         font-weight: 500;
