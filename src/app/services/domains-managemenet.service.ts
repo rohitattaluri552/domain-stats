@@ -60,7 +60,7 @@ export interface SubDomain {
   name: number,
   usedStorage: string,
   domainTag: string,
-  montlyVisitor: number,
+  monthlyVisitor: number,
   color?: string,
   backgroundColor?: string;
 }

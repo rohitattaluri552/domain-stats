@@ -32,7 +32,7 @@
       <div class="storage-bar mb-5">
         <div class="storage-used" 
           [style.width.%]="monthlyUsersPercentage" 
-          [class.border-radius-adjustments]="monthlyUsersPercentage === 100">
+          [class.border-radius-adjustments]="monthlyUsersPercentage === '100'">
         </div>
       </div>
       <div class="value"> {{domain?.monthlyVisitor}} of {{domain?.monthlyVisitorCapacity}}</div>

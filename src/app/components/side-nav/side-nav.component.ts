@@ -8,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class SideNavComponent implements OnInit {
 
   constructor() { }
-  userInfo: Object = {
-    profilePicture: 'assets/images/author-avatar.jpg',
-    email: 'rohit@gmail.com',
-    name: 'Rohit Attaluri',
-  }
+  userInfo: any = {};
   menuItems: Object [] = [];
 
   ngOnInit() {
+    this.userInfo = {
+      profilePicture: 'assets/images/author-avatar.jpg',
+      email: 'rohit@gmail.com',
+      name: 'Rohit Attaluri',
+    };
     this.menuItems = [
       {
         name: 'Dashboard',
