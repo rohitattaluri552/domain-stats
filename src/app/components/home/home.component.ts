@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DomainInfo, DomainsManagemenetService } from 'src/app/services/domains-managemenet.service';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,13 @@ import { DomainInfo, DomainsManagemenetService } from 'src/app/services/domains-
 })
 export class HomeComponent implements OnInit {
 
-  public domains: DomainInfo[];
+  private domains: DomainInfo[];
 
   searchDomain = new FormControl('');
   
   headerItems: string[] = [];
+
+  filteredDomainsList$: Observable<DomainInfo[]>;
 
   isDialogOpened: boolean = false;
 
@@ -26,11 +29,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getDomainInfo();
-    // this.domainsService.deleteADomain(5).subscribe(deleteInfo => {
-    //   if(deleteInfo != null) {
-    //     window.alert('Domain information deleted succesfully ');
-    //   }
-    // });
+    
     //Buildding the form
     this.addDomainForm = new FormGroup({
       domain: new FormControl('', Validators.required),
@@ -38,6 +37,8 @@ export class HomeComponent implements OnInit {
       storage: new FormControl('', Validators.required),
       subdomain: new FormControl([]),
     });
+    
+    
 
     //Preparing the requried header fileds to show on UI
     this.headerItems = ['Domain & Plan Name', 'Storage', 'Monthly Visitor', 'Domains', 'Status'];
@@ -63,12 +64,20 @@ export class HomeComponent implements OnInit {
   private getDomainInfo(){
     this.domainsService.getDomainsList().subscribe((domains: DomainInfo[]) => {
       this.domains = domains;
+      this.onSearchDomain();
     });
   }
 
   /// TODO:Search functionality
-  public onSearchDomain(event: Object){
-    
+  public onSearchDomain(){
+    this.filteredDomainsList$ = this.searchDomain.valueChanges.pipe(
+      startWith(''),
+      map((searchText: string) =>
+        !searchText ? this.domains : this.domains.filter(
+          c => c.domain.toLowerCase().includes(searchText.toLowerCase())
+        )
+      )
+    );
   }
 
   /**

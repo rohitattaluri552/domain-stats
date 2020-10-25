@@ -29,7 +29,7 @@
       <div class="search-section d-flex-row justify-content-start align-items-center">
         <span class="label">Entries</span>
         <mat-icon>search</mat-icon>
-        <input type="text" (change)="onSearchDomain($event)" placeholder="Search records" [formControl]="searchDomain">
+        <input type="text" placeholder="Search records" [formControl]="searchDomain">
       </div>
     </div>
 
@@ -46,14 +46,14 @@
 
       <div class="d-flex-column justify-content-start align-items-start">
 
-        <ng-container *ngIf="domains.length">
-          
-          <ng-container *ngIf="domains.length > 1; then domainTiles else noDomainsMsg"></ng-container>
+        <ng-container *ngIf="(filteredDomainsList$ | async) as filteredDomainsList">
+
+          <ng-container *ngIf="filteredDomainsList.length; then domainTiles else noDomainsMsg"></ng-container>
           
           <ng-template #domainTiles>
             <app-domain-info-tile 
               style="width: 100%;" 
-              *ngFor="let domain of domains" 
+              *ngFor="let domain of filteredDomainsList" 
               [domain-info]="domain">
             </app-domain-info-tile>
           </ng-template>
