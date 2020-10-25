@@ -13,12 +13,13 @@ export class DomainInfoTileComponent implements OnInit {
 
   ngOnInit() { }
 
-  get storageUsed() {
+  get storageUsed() {    
     var usedData = (parseInt(this.domain.usedStorage) / parseInt(this.domain.storage))*100;
     return usedData;
   }
+
   get monthlyUsersPercentage() {
-    var totalUsersPercentage = (this.domain.montlyVisitor / this.domain.monthlyVisitorCapacity)*100;
+    var totalUsersPercentage = (this.domain.monthlyVisitor / this.domain.monthlyVisitorCapacity)*100;
     return totalUsersPercentage.toFixed(2);
   }
 

@@ -5,7 +5,7 @@
   <div class="right-section">
     <header class="d-flex-row justify-content-btw align-items-center mb-35">
       <h2>Site Details</h2>
-      <div class="add-domain-btn d-flex-row align-items-center">
+      <div class="add-domain-btn d-flex-row align-items-center" (click)="isDialogOpened = !isDialogOpened">
         <mat-icon class="mr-16">add</mat-icon>
         <span>add new site</span>
       </div>
@@ -29,7 +29,7 @@
       <div class="search-section d-flex-row justify-content-start align-items-center">
         <span class="label">Entries</span>
         <mat-icon>search</mat-icon>
-        <input type="text" placeholder="Search records" [formControl]="searchDomain">
+        <input type="text" (change)="onSearchDomain($event)" placeholder="Search records" [formControl]="searchDomain">
       </div>
     </div>
 
@@ -45,7 +45,8 @@
       </div>
 
       <div class="d-flex-column justify-content-start align-items-start">
-        <ng-container *ngIf="(filteredDomains$ | async ) as domains">
+
+        <ng-container *ngIf="domains.length">
           
           <ng-container *ngIf="domains.length > 1; then domainTiles else noDomainsMsg"></ng-container>
           
@@ -68,3 +69,50 @@
 
   </div>
 </section>
+
+<!-- To show pop-up -->
+<div *ngIf="isDialogOpened">
+  <div id="overlay" [style.display]="isDialogOpened ? 'block' : 'none'"></div>
+  <div class="dialog">
+    <div class="dialog-header-section d-flex-row justify-content-btw align-items-center">
+      <h4>Add Domain Details</h4>
+      <mat-icon (click)="isDialogOpened = !isDialogOpened">close</mat-icon>
+    </div>
+    
+    <div class="dialog-body d-flex-column justify-content-start align-items-start">
+      
+      <form [formGroup]="addDomainForm" (ngSubmit)="submitForm()">
+        
+        <div class="d-flex-row input-fields-row mb-20" >
+          <div class="d-flex-column input-field">
+            <label for="domain name" class="mb-10">Domain Name*</label>
+            <input type="text" placeholder="Domain name"  [formControl]="domain">
+          </div>
+          <div class="d-flex-column input-field">
+            <label for="storage" class="mb-10">Storage*</label>
+            <input type="text" placeholder="Storage" [formControl]="storage">
+          </div>
+        </div>
+
+        <div class="d-flex-row input-fields-row">
+          <div class="d-flex-column input-field">
+            <label for="domain name" class="mb-10">Subdomain*</label>
+            <input type="text" placeholder="Sub domain" [formControl]="subdomain">
+          </div>
+          <div class="d-flex-column input-field">
+            <label for="monthlyVisitor" class="mb-10">Monthly Visitors*</label>
+            <input type="text" placeholder="Monthly Visitors" [formControl]="monthlyVisitor">
+          </div>
+        </div>
+
+
+        <div class="footer-btns d-flex-row justify-content-end align-items-center" >
+            <div class="d-flex-row justify-content-start align-items-center">
+              <span class="close-btn" (click)="resetForm();">Close</span>
+              <button class="save-domain" type="submit" [disabled]="addDomainForm.invalid">Save Changes</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

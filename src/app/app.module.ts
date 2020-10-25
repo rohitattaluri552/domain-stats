@@ -11,6 +11,7 @@ import { DomainsManagemenetService } from './services/domains-managemenet.servic
 import { AddDomainDialogComponent } from './components/add-domain-dialog/add-domain-dialog.component';
 import { MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [ DomainsManagemenetService ],
+  providers: [DomainsManagemenetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,8 +5,9 @@ section {
     height: 100vh;
     padding-top: 100px;
     background: var(--app-primary-blue);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     bottom: 0;
     
     .user-profile {

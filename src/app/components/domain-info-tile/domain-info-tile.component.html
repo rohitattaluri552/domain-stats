@@ -5,9 +5,15 @@
       [class.remove-border-bottom-radius]="domain?.subdomain?.length">
     
     <!-- Domain details column -->
-    <div class="w-30 d-flex-column justify-content-start align-items-start">
+    <div class="w-30 d-flex-column justify-content-start align-items-start" style="margin-left: -5px;">
       <span class="domain-name mb-5" [innerHtml]="domain?.domain"></span>
-      <span class="professional-plant">Professional Plan</span>
+      <span class="professional-plant d-flex-row justify-content-start align-items-center">
+        <img src="assets/icons/professional-pack-icon.png"
+          alt="professional-pack-icon"
+          loading="lazy"
+          height="20px" width="20px">
+        <span class="ml-3">Professional Plan</span>
+      </span>
     </div>
 
     <!-- Storage column progress bar -->
@@ -18,7 +24,7 @@
           [class.border-radius-adjustments]="storageUsed === 100">
         </div>
       </div>
-      <div class="value"> {{domain.usedStorage}}GB of {{domain.storage}}GB</div>
+      <div class="value"> {{domain?.usedStorage}}GB of {{domain?.storage}}GB</div>
     </div>
 
     <!-- Monthly visitors progress bar -->
@@ -29,7 +35,7 @@
           [class.border-radius-adjustments]="monthlyUsersPercentage === 100">
         </div>
       </div>
-      <div class="value"> {{domain.montlyVisitor}} of {{domain.monthlyVisitorCapacity}}</div>
+      <div class="value"> {{domain?.monthlyVisitor}} of {{domain?.monthlyVisitorCapacity}}</div>
     </div>
 
     <!-- Show the number of domains they are using including sub-domains -->
@@ -47,7 +53,8 @@
   <div class="sub-domains" *ngIf="domain?.subdomain?.length">
     <app-sub-domain-tile 
       *ngFor="let subdomain of domain?.subdomain" 
-      [subdomain]="subdomain">
+      [subdomain]="subdomain"
+      [status]="domain?.status">
     </app-sub-domain-tile>
   </div>
 </section>

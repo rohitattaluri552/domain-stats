@@ -1,5 +1,29 @@
 <section class="d-flex-row">
-  <div class="w-30">
-    <span [innerHtml]="subdomain?.name"></span>
+  <div class="w-30 subdomain-name" [innerHtml]="subdomain?.name"></div>
+
+  <!-- Storage information of the subdomain -->
+  <div class="w-30 used-storage d-flex-row justify-content-start align-items-center">
+    <span class="mr-8 value" [innerHtml]="subdomain?.usedStorage + 'GB'"></span>
+    <pre class="storage-marker"></pre>
+  </div>
+
+  <!-- Monthly visitors of the subdomain -->
+  <div class="w-30 used-storage d-flex-row justify-content-start align-items-center">
+    <span class="mr-8 value" *ngIf="subdomain?.monthlyVisitor" [innerHtml]="subdomain?.monthlyVisitor"></span>
+    <span class="value" *ngIf="!subdomain?.monthlyVisitor">-</span>
+    <pre class="storage-marker"></pre>
+  </div>
+
+  <!-- Domain Tag -->
+  <div class="w-20 domain-tag">
+    <div class="chip" [style.color]="subdomain?.color" 
+      [style.backgroundColor]="subdomain?.backgroundColor" 
+      [innerHtml]="subdomain?.domainTag" ></div>
+  </div>
+
+  <div class="w-20 status-section">
+    <div class="chip"[style.color]="status === 'Active' ? '#5b7cfd'  : '#d23434'" 
+      [style.backgroundColor]="status === 'Active' ? ' #dee5ff'  : '#ff00003d'" 
+      [innerHtml]="status" ></div>
   </div>
 </section>
