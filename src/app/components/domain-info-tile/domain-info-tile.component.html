@@ -50,7 +50,7 @@
   </div>
   
   <!-- Iterating the subdomains if have any -->
-  <div class="sub-domains" *ngIf="domain?.subdomain?.length">
+  <div class="sub-domains" *ngIf="domain?.subdomain?.sort">
     <app-sub-domain-tile 
       *ngFor="let subdomain of domain?.subdomain" 
       [subdomain]="subdomain"

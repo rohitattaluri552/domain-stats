@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DomainInfo, DomainsManagemenetService } from 'src/app/services/domains-managemenet.service';
 import { startWith, map } from 'rxjs/operators';
@@ -23,23 +23,26 @@ export class HomeComponent implements OnInit {
 
   addDomainForm: FormGroup;
 
+  subDomains: any [];
+
   constructor(
     private domainsService: DomainsManagemenetService,
   ) { }
 
   ngOnInit() {
     this.getDomainInfo();
-    
+    // Delete function call
+    // this.domainsService.deleteADomain(6).subscribe(deletedDomain => {
+    //   alert('Domain deleted successfully');
+    // })
     //Buildding the form
     this.addDomainForm = new FormGroup({
       domain: new FormControl('', Validators.required),
       monthlyVisitor: new FormControl('', Validators.required),
       storage: new FormControl('', Validators.required),
-      subdomain: new FormControl([]),
+      subdomain: new FormArray([]),
     });
     
-    
-
     //Preparing the requried header fileds to show on UI
     this.headerItems = ['Domain & Plan Name', 'Storage', 'Monthly Visitor', 'Domains', 'Status'];
   }
@@ -54,8 +57,8 @@ export class HomeComponent implements OnInit {
     return this.addDomainForm.get('storage');
   }
 
-  get subdomain() {
-    return this.addDomainForm.get('subdomain');
+  get subdomain():FormArray {
+    return this.addDomainForm.get('subdomain') as FormArray;
   }
 
   /**
@@ -80,6 +83,35 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  // Add a sub domain
+  addASubDomain(input: HTMLInputElement) {
+    const subDomain = new FormControl({
+        name: input.value,
+        id: this.create_UUID(),
+        usedStorage: 0,
+        domainTag: 'Add On',
+        monthlyVisitor: Math.floor((Math.random() * 1200) + 1),
+      });
+    this.subdomain.push(subDomain);
+    input.value = '';
+  }
+
+  // generate UUID for subdomain Id
+  create_UUID(){
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (dt + Math.random()*16)%16 | 0;
+        dt = Math.floor(dt/16);
+        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+  }
+
+  // Remove the subdomian if not required 
+  removeSubdomain(index){
+    this.subdomain.removeAt(index);
+  }
+
   /**
    * After submiting the form, re-setting the expected properties that are in use(on UI)
    * and calling api to add the new domain details. 
@@ -89,6 +121,8 @@ export class HomeComponent implements OnInit {
     reqObject.usedStorage = 0;
     reqObject.usedDomains = reqObject.subdomain !== '' ? 2 : 1;
     reqObject.monthlyVisitorCapacity = 22500;
+    reqObject.status = 'Active';
+
     reqObject.monthlyVisitor = parseInt(reqObject.monthlyVisitor);
     reqObject.availableDomains = Math.floor((Math.random() * 20) + 1);
 

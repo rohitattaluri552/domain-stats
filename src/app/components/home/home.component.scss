@@ -154,7 +154,31 @@ section {
             height: 440px;
             padding-top: 20px;
             position: relative;
-            .input-field { width: 40%; }
+            .input-field { 
+                width: 40%;
+
+                .new-subdomain-tile {
+                    width: 100%;
+                    margin-top: 10px;
+                    justify-content: space-between;
+                    align-items: center;
+                    span {
+                        padding: 6px 12px;
+                        width: 100%;
+                        color: var(--app-neutral-dark-blue);
+                        font-weight: 500;
+                        border: 1px solid var(--app-neutral-light-gray);
+                    }
+                    mat-icon {
+                        margin-left: 5px;
+                        color: var(--app-primary-red);
+                        cursor: pointer;
+                        font-size: 18px;
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
             .input-fields-row { 
                 justify-content: space-around;
                 input { 

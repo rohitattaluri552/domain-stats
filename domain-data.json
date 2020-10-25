@@ -68,14 +68,30 @@
       "monthlyVisitor": 2340
     },
     {
-      "domain": "adaf.com",
-      "monthlyVisitor": 2222,
-      "storage": "345",
-      "subdomain": "dfaf.adaf.com",
+      "domain": "amazon.com",
+      "monthlyVisitor": 2344,
+      "storage": "300",
+      "subdomain": [
+        {
+          "name": "aaa.com",
+          "id": "ca0ad2c5-b176-42e9-b3a9-eecdbecbf21b",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 728
+        },
+        {
+          "name": "adfafaf.com.com",
+          "id": "7f3598c0-9b62-46de-a0ed-587d38a4d198",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 802
+        }
+      ],
       "usedStorage": 0,
       "usedDomains": 2,
       "monthlyVisitorCapacity": 22500,
-      "availableDomains": 18,
+      "status": "Active",
+      "availableDomains": 4,
       "id": 5
     }
   ]
