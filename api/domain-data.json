@@ -160,6 +160,26 @@
       "status": "Active",
       "availableDomains": 2,
       "id": 13
+    },
+    {
+      "domain": "alpha.mart.com",
+      "monthlyVisitor": 422,
+      "storage": "520",
+      "subdomain": [
+        {
+          "name": "beta.mart.com",
+          "id": "d9a41a3b-864d-454c-b14c-1d3a75bc8cc8",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 906
+        }
+      ],
+      "usedStorage": 52,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 4220,
+      "status": "Active",
+      "availableDomains": 2,
+      "id": 14
     }
   ]
 }

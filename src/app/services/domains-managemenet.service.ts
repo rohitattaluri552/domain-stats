@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 
 export class DomainsManagemenetService {
 
-  baseUrl = 'http://localhost:3000/domain-info';
+  baseUrl = '/api/domain-info';
   
   constructor(
     private http: HttpClient,

@@ -8,7 +8,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "ng build --prod && npm run api",
     "api": "json-server api/domain-data.json --routes api/routes.json --no-cors=true"
   },
   "private": true,
