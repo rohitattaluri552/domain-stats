@@ -1,0 +1,165 @@
+{
+  "domain-info": [
+    {
+      "id": 1,
+      "domain": "xyz.com",
+      "storage": 100,
+      "usedStorage": 50,
+      "domainTag": "Primary",
+      "availableDomains": 10,
+      "status": "Active",
+      "usedDomains": 4,
+      "monthlyVisitorCapacity": 10000,
+      "monthlyVisitor": 100,
+      "subdomain": [
+        {
+          "id": 11,
+          "name": "abc.xyzcom",
+          "usedStorage": 0,
+          "domainTag": "Staging",
+          "monthlyVisitor": 700
+        },
+        {
+          "id": 12,
+          "name": "adef.xyz.com",
+          "usedStorage": 40,
+          "domainTag": "Add On",
+          "monthlyVisitor": 1100
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "domain": "orkut.com",
+      "storage": 100,
+      "usedStorage": 23,
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "monthlyVisitor": 2000
+    },
+    {
+      "id": 3,
+      "domain": "samsun.co.in",
+      "storage": 100,
+      "usedStorage": 23,
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "monthlyVisitor": 4524
+    },
+    {
+      "id": 4,
+      "domain": "farmer.store.com",
+      "storage": 100,
+      "usedStorage": 51,
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "monthlyVisitor": 2340
+    },
+    {
+      "domain": "coupondunia.com",
+      "monthlyVisitor": 4445,
+      "storage": "444",
+      "subdomain": [
+        {
+          "name": "us.coupondunia.com",
+          "id": "f7b99bc9-d884-49e1-a89d-8fe06314b7ce",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 1148
+        },
+        {
+          "name": "ca.coupondunia.com",
+          "id": "7eed8f08-c8c4-4b7d-b0dd-d880dfac023d",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 435
+        }
+      ],
+      "usedStorage": 0,
+      "usedDomains": 2,
+      "monthlyVisitorCapacity": 22500,
+      "status": "Active",
+      "availableDomains": 3,
+      "id": 10
+    },
+    {
+      "domain": "merakamara.com",
+      "monthlyVisitor": 5432,
+      "storage": "344",
+      "subdomain": [
+        {
+          "name": "in.merakamara.com",
+          "id": "d6d5a284-a2b0-4e09-b8ff-caa3bebac685",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 266
+        }
+      ],
+      "usedStorage": 34.4,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 45500,
+      "status": "Inactive",
+      "availableDomains": 2,
+      "id": 11
+    },
+    {
+      "domain": "amazon.com",
+      "monthlyVisitor": 42000,
+      "storage": "3500",
+      "subdomain": [
+        {
+          "name": "grocceries.amazon.com",
+          "id": "482180c4-e178-4862-a61c-8f30ac365832",
+          "usedStorage": 0,
+          "domainTag": "Primary",
+          "monthlyVisitor": 1129
+        },
+        {
+          "name": "prime.amazon.com",
+          "id": "38325225-356c-4111-803c-a804946285d1",
+          "usedStorage": 0,
+          "domainTag": "Primary",
+          "monthlyVisitor": 785
+        }
+      ],
+      "usedStorage": 350,
+      "usedDomains": 2,
+      "monthlyVisitorCapacity": 420000,
+      "status": "Inactive",
+      "availableDomains": 3,
+      "id": 12
+    },
+    {
+      "domain": "flipkart.com",
+      "monthlyVisitor": 4555,
+      "storage": "5543",
+      "subdomain": [
+        {
+          "name": "mart.flipkart.com",
+          "id": "e9a6a469-a479-4bf0-ad74-3522b10c9dfa",
+          "usedStorage": 0,
+          "domainTag": "Add On",
+          "monthlyVisitor": 643
+        }
+      ],
+      "usedStorage": 554.3,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 45550,
+      "status": "Active",
+      "availableDomains": 2,
+      "id": 13
+    }
+  ]
+}
