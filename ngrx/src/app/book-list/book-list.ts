@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from './books.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { selectBookCollection } from '../state/books.selector';
 import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-book-list',
-  imports: [ CommonModule],
+  imports: [ NgFor ],
   templateUrl: './book-list.html',
   styleUrl: './book-list.scss',
 })

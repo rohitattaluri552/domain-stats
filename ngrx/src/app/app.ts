@@ -6,12 +6,12 @@ import { GoogleBooksService } from './book-list/book-list.service';
 import { Store } from '@ngrx/store';
 import { selectBookCollection, selectBooks } from './state/books.selector';
 import { BooksActions, BooksApiActions } from './state/books.actions';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, take, takeLast } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { distinctUntilChanged, map, switchMap, } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BookListComponent, BookCollectionComponent, CommonModule],
+  imports: [RouterOutlet, BookListComponent, BookCollectionComponent, AsyncPipe, NgIf],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
