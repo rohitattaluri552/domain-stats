@@ -1,9 +1,7 @@
 <div
-  class="book-item"
-  style
-  *ngFor="let book of books"
+  *ngFor="let book of books; index as index"
 >
-    <p>{{book.volumeInfo.title}}</p>
+    <p>{{index + 1}}. {{book.volumeInfo.title}}</p>
     <div>
       <span> by {{book.volumeInfo.authors}}</span>
       <button

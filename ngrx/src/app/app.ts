@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { BookListComponent } from './book-list/book-list';
 import { BookCollectionComponent } from './book-collection/book-collection';
 import { GoogleBooksService } from './book-list/book-list.service';
 import { Store } from '@ngrx/store';
 import { selectBookCollection, selectBooks } from './state/books.selector';
 import { BooksActions, BooksApiActions } from './state/books.actions';
-import { tap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,17 +21,24 @@ export class App implements OnInit{
   books$;
   bookCollection$;
 
-  constructor(private bookListService: GoogleBooksService, private store: Store){
+  constructor(
+    private bookListService: GoogleBooksService,
+    private store: Store,
+    private activatedRoute: ActivatedRoute
+  ){
     this.books$ = this.store.select(selectBooks);
     this.bookCollection$ = this.store.select(selectBookCollection);
   }
 
   ngOnInit() {
-    this.bookListService
-      .getBooks()
-      .subscribe((books) =>
+    this.activatedRoute.queryParams.pipe(
+      switchMap(params => {
+        const size: number = params['size'] || 4;
+        return this.bookListService.getBooks(size);
+      })
+    ).subscribe(books => {
         this.store.dispatch(BooksApiActions.retrievedBookList({ books }))
-      );
+    });
   }
 
   onAdd(bookId: string) {

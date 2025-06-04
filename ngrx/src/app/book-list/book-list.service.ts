@@ -9,10 +9,10 @@ import { Book } from './books.model';
 export class GoogleBooksService {
   constructor(private http: HttpClient) {}
 
-  getBooks(): Observable<Array<Book>> {
-    return this.http
+  getBooks(size: number = 4): Observable<Array<Book>> {
+    return this.http 
       .get<{ items: Book[] }>(
-        'https://www.googleapis.com/books/v1/volumes?maxResults=4&orderBy=relevance&q=oliver%20sacks'
+        `https://www.googleapis.com/books/v1/volumes?maxResults=${size}&orderBy=relevance&q=oliver%20sacks`
       )
       .pipe(map((books) => books.items || []));
   }

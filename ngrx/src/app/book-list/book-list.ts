@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
   selector: 'app-book-list',
   imports: [ CommonModule],
   templateUrl: './book-list.html',
+  styleUrl: './book-list.scss',
 })
 export class BookListComponent {
   @Input() books: ReadonlyArray<Book> = [];
