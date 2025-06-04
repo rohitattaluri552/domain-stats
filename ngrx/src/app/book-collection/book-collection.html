@@ -1,0 +1,20 @@
+<main *ngIf="books.length else noBlock">
+  <div 
+    class="book-item"
+    *ngFor="let book of books;"
+  >
+    <p>{{book.volumeInfo.title}}</p>
+    <div>
+      <span> by {{book.volumeInfo.authors}}</span>
+      <button
+          (click)="remove.emit(book.id)"
+          data-test="remove-button"
+        style="margin-left: 12px; margin-bottom: 12px;"
+      >Remove from Collection</button>
+    </div>
+  </div>
+</main>
+<ng-template #noBlock>
+  <p class="empty-collection">Your collection is empty.</p>
+</ng-template>
+
