@@ -6,7 +6,7 @@ import { GoogleBooksService } from './book-list/book-list.service';
 import { Store } from '@ngrx/store';
 import { selectBookCollection, selectBooks } from './state/books.selector';
 import { BooksActions, BooksApiActions } from './state/books.actions';
-import { switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap, take, takeLast } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -32,13 +32,14 @@ export class App implements OnInit{
 
   ngOnInit() {
     this.activatedRoute.queryParams.pipe(
-      switchMap(params => {
-        const size: number = params['size'] || 4;
+      map(params => params['size'] ?? 4),
+      distinctUntilChanged(),
+      switchMap(size => {
         return this.bookListService.getBooks(size);
-      })
-    ).subscribe(books => {
+      }),
+    ).subscribe(books => 
         this.store.dispatch(BooksApiActions.retrievedBookList({ books }))
-    });
+    );
   }
 
   onAdd(bookId: string) {

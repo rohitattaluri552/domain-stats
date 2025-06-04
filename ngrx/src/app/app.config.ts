@@ -6,7 +6,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { booksReducer } from './state/books.reducer';
 import { collectionReducer } from './state/collection.reducer';
 import { provideStore } from '@ngrx/store';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +17,6 @@ export const appConfig: ApplicationConfig = {
       books: booksReducer,
       collection: collectionReducer
     }),
-    importProvidersFrom(HttpClientModule),
+    provideHttpClient(withFetch())
   ],
 };
