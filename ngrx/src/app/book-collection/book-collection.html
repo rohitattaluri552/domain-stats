@@ -1,6 +1,6 @@
-@if (books.length) {
+@if (books().length) {
   <main>
-    @for (book of books; track book.id) {
+    @for (book of books(); track book.id) {
       <div class="book-item"> 
         <p>{{book.volumeInfo.title}}</p>
         <div>

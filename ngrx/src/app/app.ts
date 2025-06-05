@@ -6,8 +6,8 @@ import { GoogleBooksService } from './book-list/book-list.service';
 import { Store } from '@ngrx/store';
 import { selectBookCollection, selectBooks } from './state/books.selector';
 import { BooksActions, BooksApiActions } from './state/books.actions';
-import { distinctUntilChanged, map, switchMap, } from 'rxjs';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { distinctUntilChanged, map, switchMap } from 'rxjs';
+import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ export class App implements OnInit{
 
   books$;
   bookCollection$;
+
 
   constructor(
     private bookListService: GoogleBooksService,

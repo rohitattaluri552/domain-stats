@@ -1,17 +1,14 @@
 
 
+@let books = books$ | async;
+@let bookCollection = bookCollection$ | async;
 
-@if(!books$ || !bookCollection$) {
-  <h2>Loading...</h2>
-}
+<h2>Available Books ({{ books?.length }})</h2>
+<app-book-list class="book-list" [books]="books!" [collection]="bookCollection!" (add)="onAdd($event)"></app-book-list>
 
-<h2>Available Books ({{ (books$ | async)?.length }})</h2>
-<app-book-list class="book-list" [books]="(books$ | async)!" (add)="onAdd($event)"></app-book-list>
 
-<div *ngIf="bookCollection$ | async as bookCollection">
-    <h2>My Collection <span *ngIf="bookCollection.length"> ({{bookCollection.length }})</span></h2>
-    <app-book-collection class="book-collection" [books]="(bookCollection$ | async)!" (remove)="onRemove($event)">
-    </app-book-collection>
-</div>
+<h2>My Collection <span *ngIf="bookCollection?.length"> ({{bookCollection?.length }})</span></h2>
+<app-book-collection class="book-collection" [books]="bookCollection!" (remove)="onRemove($event)">
+</app-book-collection>
 
 <router-outlet />

@@ -1,5 +1,5 @@
 <div
-  *ngFor="let book of books; index as index"
+  *ngFor="let book of books(); index as index"
 >
     <p>{{index + 1}}. {{book.volumeInfo.title}}</p>
     <div>

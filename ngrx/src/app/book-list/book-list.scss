@@ -5,7 +5,9 @@
     padding: 1rem;
     background: #f9f9f9;
     width: 400px;
-    height: 400px;
+    min-height: 250px;
+    max-height: 400px;
+    
     overflow-y: scroll;
     border-radius: 5px;
 }
